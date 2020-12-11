@@ -1,0 +1,79 @@
+Title         : 场景Scene制作注意事项
+Author        : 
+Logo          : False
+
+[TITLE]
+
+# Bake 烘焙 
+
+## 参数设置
+* 参考[烘焙技巧]
+* Lighting Mode -> **ShadowMask**
+* Indirect Resolution -> **0.1~3.0** 越精细数值越大，本项目默认使用1.0即可
+* Lightmap Resolution -> **1~30** Indirect的10倍
+* Lightmap Size -> **1024**
+* Directional Mode -> **Directional**
+
+## 烘焙贴图设置
+* 
+  : ### 所有烘焙贴图
+      * Read/Write Enabled  ->  **不勾选**
+      * Generate Mip Maps -> **不勾选**
+* 
+  : ### _shadowmak贴图
+    * Texture Type -> **Single Channel**
+    * Channel -> **Red**
+# Shader
+~ Note
+路径：**BF_SRP/Scene/XXX**
+~
+~ Note
+性能：**Diffuse < Bump < XX < Cutoff < AnimationVertex**
+~
+~ Note
+最后：一定要按需选择合适的shader, 没用到特性就不要选， 优先使用性能消耗小的Shader
+~
+
+# Layer
+* 按照Layer功能分层来放
+* Other里面放小型点缀物
+* Building 里面放建筑或大型点缀物
+* Grass 里面放数量极多的需要GPU Instance处理的小草，小花
+
+# Prefab
+* 路径按照项目要求放置
+* Prefab里面只能有 **MeshRenderer**，**MeshFilter**，等其他项目定制功能组件， 不允许增加其他不使用的组件
+* Cast Shadows -> 是否产生阴影
+* Receive Shadows -> 是否接受阴影
+* 按需选择是否产生或接受阴影(平坦的地表和Water，草不需要产生阴影)
+* Static选择， 需要烘焙的则选择LightMap Static
+* GrassHeap 草不需要烘焙则不要选择LightMap Static
+* GpuInstance 针对大批量相同Mesh和Material需要选择GPUInstance来降低消耗
+
+# Mesh FBX
+* Generate Lightmap UVs -> 烘培则勾选，反之则否
+* Tangents -> 不需要法线贴图则不需要导入 **None**
+* Read/Write Enabled -> **不勾选**
+* Optimize Mesh -> **勾选**
+* Mesh Compression -> **Medium**
+* Import Constraints -> **不勾选**
+* Import Animation -> **不勾选**
+* Import Materials -> **不勾选**
+* Mesh 最多导入(uv, uv2, colors) 其他都是不合理导入删除, uv2(烘培才有) colors(草才有)
+* Mesh 不要使用SubMesh， 不利于程序优化处理
+
+# 贴图
+~ Note
+贴图必须是2的次幂
+~
+~ Note
+贴图大小大部分物件严格控制512*512以内
+~
+~ Note
+尽量使用小尺寸方形贴图
+~
+~ Note
+尽量不要使用透贴(按需使用),透明和半透明需要分开
+~
+
+[烘焙技巧]:https://zhuanlan.zhihu.com/p/36806801 "Madoko reference manual"
