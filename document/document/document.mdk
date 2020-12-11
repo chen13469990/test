@@ -10,12 +10,13 @@ Logo          : False
 * 参考[烘焙技巧]
 * Lighting Mode -> **ShadowMask**
 * Indirect Resolution -> **0.1~3.0** 越精细数值越大，本项目默认使用1.0即可
-* Lightmap Resolution -> **1~30** 本项目使用Indirect的4倍
+* Lightmap Resolution -> **1~30** Indirect的10倍
 * Lightmap Size -> **1024**
 * Directional Mode -> **Directional**
 ![light]
 
 [light]: images/light.png "light" { width:auto; max-width:90% }
+
 
 
 ## 烘焙贴图设置
@@ -35,7 +36,7 @@ Logo          : False
 性能：**Diffuse < Bump < XX < Cutoff < AnimationVertex**
 ~
 ~ Note
-最后：一定要按需选择合适的shader, 没用到特性就不要选， 优先使用性能消耗小的Shader
+最后：[一定要按需选择合适的shader, 没用到特性就不要选， 优先使用性能消耗小的Shader]{ background-color=#FFE502 }
 ~
 
 # Layer
@@ -46,7 +47,7 @@ Logo          : False
 
 # Prefab
 * 路径按照项目要求放置
-* Prefab里面只能有 **MeshRenderer**，**MeshFilter**，等其他项目定制功能组件， 不允许增加其他不使用的组件
+* Prefab里面只能有 **MeshRenderer**，**MeshFilter**，等其他项目定制功能组件， [不允许增加其他不使用的组件]{ background-color=#FFE502}
 * Cast Shadows -> 是否产生阴影
 * Receive Shadows -> 是否接受阴影
 * 按需选择是否产生或接受阴影(平坦的地表和Water，草不需要产生阴影)
@@ -64,20 +65,21 @@ Logo          : False
 * Import Animation -> **不勾选**
 * Import Materials -> **不勾选**
 * Mesh 最多导入(uv, uv2, colors) 其他都是不合理导入删除, uv2(烘培才有) colors(草才有)
-* Mesh 不要使用SubMesh， 不利于程序优化处理
+* Mesh [不要使用SubMesh， 不利于程序优化处理]{ background-color=#FFE502}
 
 # 贴图
 ~ Note
 贴图必须是2的次幂
 ~
 ~ Note
-贴图大小大部分物件严格控制512*512以内
+[贴图大小大部分物件严格控制512*512以内]{ background-color=#FFE502}
 ~
 ~ Note
 尽量使用小尺寸方形贴图
 ~
 ~ Note
-尽量不要使用透贴(按需使用),透明和半透明需要分开
+[尽量不要使用透贴(按需使用),透明和半透明需要分开]{ background-color=#FFE502}
 ~
+
 
 [烘焙技巧]:https://zhuanlan.zhihu.com/p/36806801 "Madoko reference manual"
