@@ -1,0 +1,77 @@
+Title         : 注意事项
+Author        : 
+Logo          : 
+
+[TITLE]
+
+# 场景设置
+### ***烘焙***
+- 灯光<br>
+    最多2盏平行光，主光默认强度**0.98**(可根据特殊场景调整)，主光模式为**Mixed**, 其他所有光源**Baked**，次光强度不能高于主光, 除主光外其他灯光不需要阴影， 所有灯光的RenderMode调整为**Auto**
+- Light Setting<br>
+    去掉**Realtime Lighting**，选择**Baked Global Illuminnation**<br>
+    Lighting Mode 选择**ShadowMask**<br>
+    Indirect Resolution 设置 **0.2**<br>
+    Lightmap Resolution 设置 **1-2**<br>
+    Lightmap Size 设置 **1024**<br>
+- ShadowMask贴图<br>
+    修改烘焙出来之后ShadowMask贴图改成单通道模式 Single Red
+
+### ***其他***
+
+- 场景分层级(Layer)<br>
+    - 小建筑， 带有点缀意义的放到同一Layer
+    - 特殊效果，例如水效果需要特殊处理的放到一层Layer
+    - 动态物体，或者有动画性质的放到一层Layer
+    - 特殊功能，按需求带有特殊功能的Layer
+- Mesh设置<br>
+    - CastShadow 需要产生阴影的才勾上， 例如水和平坦的地表是不需要的，则不需要勾上<br>
+    - ReceiveShadow 需要接受阴影的才勾选上， 例如一般除了地表和特殊大物件需要，小物件可能不需要
+- 场景冗余<br>
+    动态物体尽量不要放在场景里面，避免造成场景的加载时间和打包冗余
+- 性能指标<br>
+    Unity官方建议DrawCall <= **200**， 面片 <= **200k**
+- Shader选择<br>
+    优先选择不透明的， 特殊物体需要选择Cutoff， 最后选择透明的<br>
+    按需要选择Shader，没有高光的就不要选择高光的Shader， 没有法线贴图的也不要选择法线贴图Shader
+
+# Shader分类 
+>Assets/Game/AssetDatabase/Shader/BF_SRP
+### ***角色***
+- 创角
+    > BF_SRP/UI/HuyaoBody    
+    > BF_SRP/UI/HuyaoHair
+- 常规
+    
+    > BF_SRP/Role/KatongTrim
+### ***场景***
+- 普通漫反射    
+    
+    > BF_SRP/Scene/Diffuse
+- 普通高光     
+    
+    > BF_SRP/Scene/Specular
+- 法线贴图高光 
+    
+    > BF_SRP/Scene/BumpSpecular
+- Cutoff
+    
+    > BF_SRP/Scene/Cutoff
+- Land 地表
+    
+    > BF_SRP/Scene/Land
+- AnimationVertex 顶点动画和公告板(慎用，按需用)
+    
+    > BF_SRP/Scene/AnimationVertex
+- Water 水效果(有折射和FlowMap流动效果)
+    
+    > BF_SRP/Scene/Water
+
+### ***贴图***
+- 尺寸<br>
+    2的次幂，正方形最佳， 最大尺寸2048\*2048, 不要求精细的贴图控制在512\*512以下(场景物件，普通NPC)
+- 格式<br>
+    优先jpg，不需要使用透明通道的一律不能使用透明贴图，一般很多模型的Diffuse根本不需要Alpha通道
+- mip map<br>
+    技能特效的贴图和UI贴图不需要勾选generate mip map
+### ***欢迎补充***
