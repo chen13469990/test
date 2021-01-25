@@ -1,0 +1,28 @@
+Title         : 特效注意事项
+Author        : You
+Logo          : True
+
+[TITLE]
+
+# Shader 
+
+所有的Shader都得再当前框架下选，即 [BF_SRP/] 如果有效果当前shader不满足， 或者需要添加新Shader， 可以联系程序添加, 自己找资源的Shader经过程序通过后， 由程序提交到SVN统一规划使用
+
+# 资源设置
+* Particle System 的 **Max Particles** 需要按需求使用，即用多少就大约估算多少， 不要设置一个非常大的无效值
+* **Max Particles** 常驻特效和UI特效必须严格限制个数， <= 30
+* **Scaling Mode** 有缩放需求的特效需要设置成**Hierarchy**， 例如挂在模型上的特效
+* 特效使用的图片 要求是2的次幂， 推荐设置如下(个别特效需要读写图片的可以勾选**Read/Write Enabled**):
+![特效图片设置]
+
+[特效图片设置]: images/-.png "特效图片设置" { width:auto; max-width:90% }
+
+
+
+* Read the [reference manual].
+* Explore the upper-right toolbox menu to discover how Markdown works. 
+* `Alt-Q` reformats the current paragraph.
+
+Enjoy!
+
+[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
