@@ -6,7 +6,7 @@ Logo          : True
 
 # Shader 
 
-所有的Shader都得再当前框架下选，即 [BF_SRP/] 如果有效果当前shader不满足， 或者需要添加新Shader， 可以联系程序添加, 自己找资源的Shader经过程序通过后， 由程序提交到SVN统一规划使用
+所有的Shader都得在当前框架下选，即 [BF_SRP/] 如果有效果当前shader不满足， 或者需要添加新Shader， 可以联系程序添加, 自己找资源的Shader经过程序通过后， 由程序提交到SVN统一规划使用
 
 # 资源设置
 * Particle System 的 **Max Particles** 需要按需求使用，即用多少就大约估算多少， 不要设置一个非常大的无效值
