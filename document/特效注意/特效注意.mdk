@@ -16,13 +16,15 @@ Logo          : True
 ![特效图片设置]
 
 [特效图片设置]: images/-.png "特效图片设置" { width:auto; max-width:90% }
+* 如果使用的模型特效，特效是不需要产生和接受阴影的， 推荐设置如下：
+![模型特效设置]
 
+[模型特效设置]: images/-.png "模型特效设置" { width:auto; max-width:90% }
 
+# UI特效
+* UI特效都涉及到裁剪， 所以shader都使用与[BF_SRP/UI/]
+* UI特效涉及层级分布，需要在根对象添加UIDepth, 如果特效基本上都在UI上面则不作其他处理， 如果特效和UI穿插，则需要在没有Play的情况下把Depth调整到0
 
-* Read the [reference manual].
-* Explore the upper-right toolbox menu to discover how Markdown works. 
-* `Alt-Q` reformats the current paragraph.
-
-Enjoy!
-
-[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
+# 建议
+* 简单模型特效能解决的，经理使用简单模型特效， 如一个面片之类的
+* 后续补充
