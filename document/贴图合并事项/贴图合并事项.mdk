@@ -1,0 +1,51 @@
+Title         : 贴图合并事项
+
+Logo          : True
+
+[TITLE]
+
+# 贴图合并
+
+## 不同材质
+两张贴图合并一起不会增加总大小, 即有一张贴图有大量空余
+
+## 相同材质
+* **同一模型, 直接合并(推荐)**
+* 不同模型，大量常用重复小物件(花、植被)
+
+#场景优化方案
+## 重要组件 (ComponentFixture -> MapItemInfoComponent)
+
++ **OnlyDistance** 只记录视距
++ **StaticGpuInstance** 静态烘培的对象合批
++ **DynamicGpuInstance** 动态的对象合批
+
+> 加了GpuInstance的组件会把相同的Prefab采用GPUInstance来绘制减少DrawCall
+
+## 资源（相对根目录 -> Assets/Game/AssetDatabase/Scene）
++ **Data** 场景导出数据 子文件夹里面是GPUInstance导出的对象数据
++ **HeightMap** 可行走区域高度图
+   + RG:高度数据
+   + B: 场景上物件的接受阴影区域（动态植被，没有参与烘培的）
+   + A：动态物体接受阴影区域(角色，怪物， NPC)
++ **ItemPathSetting** 场景物件的路径索引
+   + Local：开发模式下路径索引, 只要MetaId不变动，可以随意调整物理位置，不用重新导出地图
+   + Ab：最终存在于AB包得索引, 以字符串路径索引, 在生成AB包得时候会由Local生成Ab， 平时不用关心此内容
+   + 检测资源合法性：每一个Local里面都可以针对指定的资源检查合法性
++ **LandMipColor** 场景缩略图 针对草和地表的融合
++ **PostEffectSetting** 场景后处理配置
++ **其他文件特殊命名说明**
+   + *RW* 不区分大小写, 表明此文件夹下的资源是需要可读写的 主要针对 Mesh 和 Texture
+   + *NoRule* 不区分大小写， 表明此文件夹下的贴图不受自定义导入规则影响， 可以自由设置压缩比和格式， 针对特殊贴图
+   + *TempNotUse* 此类命名下，表明资源是一个冗余的过渡状态， 一段时间后即可删除
+
+Madoko is a fast markdown processor for writing professional articles
+with a focus on simplicity and plain text readability.
+
+* Read the [reference manual].
+* Explore the upper-right toolbox menu to discover how Markdown works. 
+* `Alt-Q` reformats the current paragraph.
+
+Enjoy!
+
+[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
