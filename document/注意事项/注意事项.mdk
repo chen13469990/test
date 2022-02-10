@@ -1,6 +1,4 @@
 Title         : 注意事项
-Author        : 
-Logo          : 
 
 [TITLE]
 
@@ -9,13 +7,15 @@ Logo          :
 - 灯光<br>
     最多2盏平行光，主光默认强度**0.98**(可根据特殊场景调整)，主光模式为**Mixed**, 其他所有光源**Baked**，次光强度不能高于主光, 除主光外其他灯光不需要阴影， 所有灯光的RenderMode调整为**Auto**
 - Light Setting<br>
-    去掉**Realtime Lighting**，选择**Baked Global Illuminnation**<br>
-    Lighting Mode 选择**ShadowMask**<br>
-    Indirect Resolution 设置 **0.2**<br>
-    Lightmap Resolution 设置 **1-2**<br>
-    Lightmap Size 设置 **1024**<br>
+    - 去掉**Realtime Lighting**，选择**Baked Global Illuminnation**<br>
+    - Lighting Mode 选择**ShadowMask**<br>
+    - Indirect Resolution 设置 **2**<br>
+    - Lightmap Resolution 设置 **8**<br>
+    - Lightmap Size 设置 **4096**<br>
 - ShadowMask贴图<br>
-    ~~修改烘焙出来之后ShadowMask贴图改成单通道模式 Single Red~~
+    - ~~修改烘焙出来之后ShadowMask贴图改成单通道模式Single Red~~
+- 贴图压缩
+    - 烘培完成之后统一ASTC压缩， 尺寸也需要进行有必要的压缩, 尺寸控制在40M-50M(视场景复杂度浮动)
 
 ### ***其他***
 
@@ -37,35 +37,37 @@ Logo          :
 
 # Shader分类 
 >Assets/Game/AssetDatabase/Shader/BF_SRP
+
 ### ***角色***
 - 创角
-    > BF_SRP/UI/HuyaoBody    
-    > BF_SRP/UI/HuyaoHair
+    - BF_SRP/UI/HuyaoBody    
+    - BF_SRP/UI/HuyaoHair
 - 常规
     
-    > BF_SRP/Role/KatongTrim
+    - BF_SRP/Role/KatongTrim
+
 ### ***场景***
 - 普通漫反射    
     
-    > BF_SRP/Scene/Diffuse
+    - BF_SRP/Scene/Diffuse
 - 普通高光     
     
-    > BF_SRP/Scene/Specular
+    - BF_SRP/Scene/Specular
 - 法线贴图高光 
     
-    > BF_SRP/Scene/BumpSpecular
+    - BF_SRP/Scene/BumpSpecular
 - Cutoff
     
-    > BF_SRP/Scene/Cutoff
+    - BF_SRP/Scene/Cutoff
 - Land 地表
     
-    > BF_SRP/Scene/Land
+    - BF_SRP/Scene/Land
 - AnimationVertex 顶点动画和公告板(慎用，按需用)
     
-    > BF_SRP/Scene/AnimationVertex
+    - BF_SRP/Scene/AnimationVertex
 - Water 水效果(有折射和FlowMap流动效果)
     
-    > BF_SRP/Scene/Water
+    - BF_SRP/Scene/Water
 
 ### ***贴图***
 - 尺寸<br>
@@ -74,4 +76,5 @@ Logo          :
     优先jpg，不需要使用透明通道的一律不能使用透明贴图，一般很多模型的Diffuse根本不需要Alpha通道
 - mip map<br>
     技能特效的贴图和UI贴图不需要勾选generate mip map
+
 ### ***欢迎补充***
