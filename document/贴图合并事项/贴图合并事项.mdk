@@ -58,6 +58,39 @@ Title         : 资源注意事项
   * **Water** 水
   * **DistantView** 常驻层
 
+#地图烘培
+##设置
+- 灯光<br>
+    最多2盏平行光，主光默认强度**0.98**(可根据特殊场景调整)，主光模式为**Mixed**, 其他所有光源**Baked**，次光强度不能高于主光, 除主光外其他灯光不需要阴影， 所有灯光的RenderMode调整为**Auto**
+- Light Setting<br>
+    - 去掉**Realtime Lighting**，选择**Baked Global Illuminnation**<br>
+    - Lighting Mode 选择**ShadowMask**<br>
+    - Indirect Resolution 设置 **2**<br>
+    - Lightmap Resolution 设置 **8**<br>
+    - Lightmap Size 设置 **4096**<br>
+- ShadowMask贴图<br>
+    - ~~修改烘焙出来之后ShadowMask贴图改成单通道模式Single Red~~
+- 贴图压缩
+    - 烘培完成之后统一ASTC压缩， 尺寸也需要进行有必要的压缩, 尺寸控制在40M-50M(视场景复杂度浮动)
+
+##其他
+
+- 场景分层级(Layer)<br>
+    - 小建筑， 带有点缀意义的放到同一Layer
+    - 特殊效果，例如水效果需要特殊处理的放到一层Layer
+    - 动态物体，或者有动画性质的放到一层Layer
+    - 特殊功能，按需求带有特殊功能的Layer
+- Mesh设置<br>
+    - CastShadow 需要产生阴影的才勾上， 例如水和平坦的地表是不需要的，则不需要勾上<br>
+    - ReceiveShadow 需要接受阴影的才勾选上， 例如一般除了地表和特殊大物件需要，小物件可能不需要
+- 场景冗余<br>
+    动态物体尽量不要放在场景里面，避免造成场景的加载时间和打包冗余
+- 性能指标<br>
+    Unity官方建议DrawCall <= **200**， 面片 <= **200k**
+- Shader选择<br>
+    优先选择不透明的， 特殊物体需要选择Cutoff， 最后选择透明的<br>
+    按需要选择Shader，没有高光的就不要选择高光的Shader， 没有法线贴图的也不要选择法线贴图Shader
+
 ## 注意
 + 严格按照各层级的意思和命名存放， **保持命名一致**
 + 导出时，必须要有主相机和相应的后处理效果资源
