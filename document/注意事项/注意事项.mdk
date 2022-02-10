@@ -15,7 +15,7 @@ Logo          :
     Lightmap Resolution 设置 **1-2**<br>
     Lightmap Size 设置 **1024**<br>
 - ShadowMask贴图<br>
-    修改烘焙出来之后ShadowMask贴图改成单通道模式 Single Red
+    ~~修改烘焙出来之后ShadowMask贴图改成单通道模式 Single Red~~
 
 ### ***其他***
 
