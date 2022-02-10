@@ -1,6 +1,4 @@
-Title         : 贴图合并事项
-
-Logo          : True
+Title         : 资源注意事项
 
 [TITLE]
 
@@ -39,13 +37,36 @@ Logo          : True
    + *NoRule* 不区分大小写， 表明此文件夹下的贴图不受自定义导入规则影响， 可以自由设置压缩比和格式， 针对特殊贴图
    + *TempNotUse* 此类命名下，表明资源是一个冗余的过渡状态， 一段时间后即可删除
 
-Madoko is a fast markdown processor for writing professional articles
-with a focus on simplicity and plain text readability.
+#LOD资源
++ lod模型最好只进行结构上的删减, 即不同的lod模型，相同位置的顶点数据是一致的
++ 模型里面自带uv 和 uv1 两套通道
++ unity不自动生成烘培uv通道
+![QQ截图20220209100838]
 
-* Read the [reference manual].
-* Explore the upper-right toolbox menu to discover how Markdown works. 
-* `Alt-Q` reformats the current paragraph.
+[QQ截图20220209100838]: images/QQ-20220209100838.png "QQ截图20220209100838" { width:auto; max-width:90% }
+#地图导出
+##命名
++ **Lights** 所有灯光根目录 有且只有一个Mixed的混合主灯光
++ **HeightMap** 高度可行走区域
++ **SceneMapPoints** 地图范围定点
++ **Map_xxxx** 地图名称
+  *  **Tree** 树木植被
+  * **Terrain** 地表层， 注意不要混用， 如果是用于地表作用，必须放到这个层级下
+  * **Building** 建筑层
+  * **AdornEffect** 特效层
+  * **Grass** 草 小植被
+  * **Water** 水
+  * **DistantView** 常驻层
 
-Enjoy!
+## 注意
++ 严格按照各层级的意思和命名存放， **保持命名一致**
++ 导出时，必须要有主相机和相应的后处理效果资源
++ 导出后请检查ItemPathSetting里面资源
 
-[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
+#资源校验
++ ctrl + k 打开功能中心选择对应资源校验
+![资源校验]
+
+[资源校验]: images/-.png "资源校验" { width:auto; max-width:90% }
+
+
