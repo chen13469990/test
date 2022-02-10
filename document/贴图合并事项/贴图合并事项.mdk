@@ -65,6 +65,7 @@ Title         : 资源注意事项
 - Light Setting<br>
     - 去掉**Realtime Lighting**，选择**Baked Global Illuminnation**<br>
     - Lighting Mode 选择**ShadowMask**<br>
+    - 参考[烘培技巧]
     - Indirect Resolution 设置 **2**<br>
     - Lightmap Resolution 设置 **8**<br>
     - Lightmap Size 设置 **4096**<br>
@@ -72,6 +73,8 @@ Title         : 资源注意事项
     - ~~修改烘焙出来之后ShadowMask贴图改成单通道模式Single Red~~
 - 贴图压缩
     - 烘培完成之后统一ASTC压缩， 尺寸也需要进行有必要的压缩, 尺寸控制在40M-50M(视场景复杂度浮动)
+
+[烘培技巧]: https://zhuanlan.zhihu.com/p/36806801
 
 ##其他
 
@@ -102,4 +105,44 @@ Title         : 资源注意事项
 
 [资源校验]: images/-.png "资源校验" { width:auto; max-width:90% }
 
+# Prefab
+* 路径按照项目要求放置
+* Prefab里面只能有 **MeshRenderer**，**MeshFilter**，等其他项目定制功能组件， [不允许增加其他不使用的组件]{ background-color=#FFE502}
+* Cast Shadows -> 是否产生阴影
+* Receive Shadows -> 是否接受阴影
+* 按需选择是否产生或接受阴影(平坦的地表和Water，草不需要产生阴影)
+* Static选择， 需要烘焙的则选择LightMap Static
+* GrassHeap 草不需要烘焙则不要选择LightMap Static
+* GpuInstance 针对大批量相同Mesh和Material需要选择GPUInstance来降低消耗
+
+# Mesh FBX
+* Generate Lightmap UVs -> 烘培则勾选，反之则否
+* Tangents -> 不需要法线贴图则不需要导入 **None**
+* Read/Write Enabled -> **不勾选**
+* Optimize Mesh -> **勾选**
+* Mesh Compression -> **Medium**
+* Import Constraints -> **不勾选**
+* Import Animation -> **不勾选**
+* Import Materials -> **不勾选**
+* Mesh 最多导入(uv, uv2, colors) 其他都是不合理导入删除, uv2(烘培才有) colors(草才有)
+
+![error]
+
+[error]: images/error.png "error" { width:auto; max-width:90% }
+
+* Mesh [不要使用SubMesh， 不利于程序优化处理]{ background-color=#FFE502}
+
+# 贴图
+~ Note
+贴图必须是2的次幂
+~
+~ Note
+[贴图大小推荐512*512以内]{ background-color=#FFE502}
+~
+~ Note
+尽量使用小尺寸方形贴图
+~
+~ Note
+[尽量不要使用透贴(按需使用),透明和半透明需要分开]{ background-color=#FFE502}
+~
 
